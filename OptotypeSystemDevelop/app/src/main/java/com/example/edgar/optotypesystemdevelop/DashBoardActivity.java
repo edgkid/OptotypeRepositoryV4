@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,6 +21,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     ListView listViewMenu;
     Context contextActivity;
 
+    String [] menuDoctor = new String []{"Asociar Test", "Opción B", "Opción C" };
+    String [] menuPatients = new String []{"PA A", "PA B", "PA C"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         imageUser = (ImageView) findViewById(R.id.imageViewLoginUser);
         userName = (TextView) findViewById(R.id.textViewLoginUser);
         logOut.setOnClickListener((View.OnClickListener) contextActivity);
+
+        listViewMenu = (ListView) findViewById(R.id.listViewDashBoardMenu);
+        loadMenu();
 
     }
 
@@ -51,6 +58,28 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         SharedPreferences.Editor preferencesEditor = loginPreferences.edit();
         preferencesEditor.clear();
         preferencesEditor.commit();
+
+    }
+
+    /**
+     * This method fill a Listview with option for user or list the patients
+     */
+    public void loadMenu(){
+
+        // Comentario para trabajar local desde la oficina
+        SharedPreferences preferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+
+        if (preferences.getString("roll", "defaultroll").equals("Doctor")){
+            ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
+            listViewMenu.setAdapter(adapterMenuDoctor);
+        }else if(preferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
+            ArrayAdapter<String> adapterMenuPatient = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuPatients);
+            listViewMenu.setAdapter(adapterMenuPatient);
+            //loadListPatientsToday();
+        }
+
+        // linea temporal para trabajar en la oficina
+        //loadListPatientsToday();
 
     }
 
