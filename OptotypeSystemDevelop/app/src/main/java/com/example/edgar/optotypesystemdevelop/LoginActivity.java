@@ -2,6 +2,7 @@ package com.example.edgar.optotypesystemdevelop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,8 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         imageViewIcon   = (ImageView) findViewById(R.id.imageViewIconEye);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener((View.OnClickListener) contextActivity);
-        Log.d("","Edgar ");
-        System.out.println("Edgar sys");
+
+        verifyPreferencesLogin();
 
     }
 
@@ -61,6 +62,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         Intent dashBoardActivity = new Intent(this, DashBoardActivity.class);
         startActivity(dashBoardActivity);
+
+    }
+
+    /**
+     *This method verify if sharedpreferences login file contend the data
+     */
+    public void verifyPreferencesLogin (){
+
+        String user = "";
+        String password = "";
+
+        SharedPreferences loginPreferences = this.getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+
+        user =  loginPreferences.getString("user", "defaultUser");
+        password = loginPreferences.getString("password", "defaultUser");
+
+        if (!user.equals("defaultUser") && !password.equals("defaultUser")){
+            callNewActivity();
+        }
 
     }
 }
