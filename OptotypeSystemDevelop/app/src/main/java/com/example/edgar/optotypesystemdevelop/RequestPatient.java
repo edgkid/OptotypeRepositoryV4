@@ -22,7 +22,7 @@ public class RequestPatient {
     public void findPatientsToDay(){
 
 
-        /*PatientDbHelper PatientDb = new PatientDbHelper(this.context);
+        PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
         Log.d(".....","Consultar");
@@ -34,10 +34,10 @@ public class RequestPatient {
             Log.d("nn: ","NO existen datos en la tabla local");
             HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
             httpRequestPatient.connectToResource((DashBoardActivity) context);
-        }*/
+        }
 
-        HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
-        httpRequestPatient.connectToResource((DashBoardActivity) context);
+        /*HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
+        httpRequestPatient.connectToResource((DashBoardActivity) context);*/
 
     }
 

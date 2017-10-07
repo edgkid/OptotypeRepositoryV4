@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -89,21 +91,41 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     public void loadListPatientsToday (){
 
         //Listado de pacientes genericos para trabajar en la oficina
-        PatientsToday patiensData[] = new PatientsToday[]{
+        /*PatientsToday patiensData[] = new PatientsToday[]{
                 new PatientsToday("edgar","4",R.drawable.usuario_icon),
                 new PatientsToday("Gabriel","4",R.drawable.usuario_icon),
                 new PatientsToday("Juan","4",R.drawable.usuario_icon),
-        };
+        };*/
         ///////////////////////////////////////////// - Bloque a borar
 
-        PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
-        listViewMenu.setAdapter(patientsAdapter);
+        /*PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
+        listViewMenu.setAdapter(patientsAdapter);*/
 
         //Listado de pacieste desde el servicio web
-        /*RequestPatient reuquestPatient = new RequestPatient("patients", this);
-        reuquestPatient.findPatientsToDay();*/
+        RequestPatient reuquestPatient = new RequestPatient("patients", this);
+        reuquestPatient.findPatientsToDay();
 
         //callInteractionActivityByPatient ();
+
+    }
+
+    public void callInteractionActivityByPatient (){
+
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PatientsToday patient = new PatientsToday();
+
+                TextView textName = (TextView)view.findViewById(R.id.namePatientToday);
+                patient.setName(textName.getText().toString());
+                TextView textyears= (TextView)view.findViewById(R.id.yearsOldPatientToday);
+                patient.setYearsOld(textyears.getText().toString());
+                ImageView photo = (ImageView)findViewById(R.id.photoPatientToday);
+                patient.setPhoto(photo.getId());
+                String paciente = patient.getName() + " " + patient.getYearsOld() + " " + patient.getPhoto();
+                Toast.makeText(getApplicationContext(), paciente ,Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

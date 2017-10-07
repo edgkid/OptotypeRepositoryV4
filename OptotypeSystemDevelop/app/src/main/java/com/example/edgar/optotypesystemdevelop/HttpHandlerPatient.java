@@ -105,7 +105,7 @@ public class HttpHandlerPatient {
 
                         if (verifyRespondeServer(result)){
                             Toast.makeText(ctx.getApplicationContext(),"Conexion con patients", Toast.LENGTH_SHORT).show();
-                            //procesingJson(result);
+                            procesingJson(result);
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
                         interrupt();
@@ -118,7 +118,7 @@ public class HttpHandlerPatient {
 
     }
 
-    /*public void procesingJson (String result){
+    public void procesingJson (String result){
 
         JSONArray array = null;
         ContentValues values = new ContentValues();
@@ -155,6 +155,6 @@ public class HttpHandlerPatient {
             Log.d("json: ", "No hay valor para procesar");
         }
 
-    }*/
+    }
 
 }
