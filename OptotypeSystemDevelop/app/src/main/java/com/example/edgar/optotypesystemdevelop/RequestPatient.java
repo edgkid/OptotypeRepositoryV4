@@ -56,6 +56,28 @@ public class RequestPatient {
         return number;
     }
 
+    public PatientsToday [] TakePatientsToday (){
+
+        int value = 0;
+        PatientsToday patientsData[] = new PatientsToday[CountPatinetsToday ()];
+
+        PatientDbHelper PatientDb = new PatientDbHelper(this.context);
+        SQLiteDatabase db = PatientDb.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld  FROM patient_db_app", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                PatientsToday patient = new PatientsToday();
+                patient.setName(cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
+                patient.setYearsOld(cursor.getString(4));
+                patientsData[value] = patient;
+                value ++;
+            } while(cursor.moveToNext());
+        }
+        return patientsData;
+    }
+
 
 
 }

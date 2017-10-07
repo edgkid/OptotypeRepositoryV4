@@ -109,8 +109,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         reuquestPatient.findPatientsToDay();
 
         PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
+        PatientsToday patients[] = reuquestPatient.TakePatientsToday();
         while (countValue < reuquestPatient.CountPatinetsToday() ){
-            patientsData[countValue] = new PatientsToday("Gabriel","4",R.drawable.usuario_icon);
+            patientsData[countValue] = new PatientsToday(patients[countValue].getName(),patients[countValue].getYearsOld(),R.drawable.usuario_icon);
             countValue ++;
         }
 
