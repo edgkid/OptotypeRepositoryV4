@@ -73,13 +73,37 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
             listViewMenu.setAdapter(adapterMenuDoctor);
         }else if(preferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
-            ArrayAdapter<String> adapterMenuPatient = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuPatients);
-            listViewMenu.setAdapter(adapterMenuPatient);
-            //loadListPatientsToday();
+            /*ArrayAdapter<String> adapterMenuPatient = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuPatients);
+            listViewMenu.setAdapter(adapterMenuPatient);*/
+            loadListPatientsToday();
         }
 
         // linea temporal para trabajar en la oficina
         //loadListPatientsToday();
+
+    }
+
+    /**
+     * This method fill a Listview with patients in witing room
+     */
+    public void loadListPatientsToday (){
+
+        //Listado de pacientes genericos para trabajar en la oficina
+        PatientsToday patiensData[] = new PatientsToday[]{
+                new PatientsToday("edgar","4",R.drawable.usuario_icon),
+                new PatientsToday("Gabriel","4",R.drawable.usuario_icon),
+                new PatientsToday("Juan","4",R.drawable.usuario_icon),
+        };
+        ///////////////////////////////////////////// - Bloque a borar
+
+        PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
+        listViewMenu.setAdapter(patientsAdapter);
+
+        //Listado de pacieste desde el servicio web
+        /*RequestPatient reuquestPatient = new RequestPatient("patients", this);
+        reuquestPatient.findPatientsToDay();*/
+
+        //callInteractionActivityByPatient ();
 
     }
 
