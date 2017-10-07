@@ -3,6 +3,8 @@ package com.example.edgar.optotypesystemdevelop;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -90,6 +92,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
      */
     public void loadListPatientsToday (){
 
+          int countValue = 0;
         //Listado de pacientes genericos para trabajar en la oficina
         /*PatientsToday patiensData[] = new PatientsToday[]{
                 new PatientsToday("edgar","4",R.drawable.usuario_icon),
@@ -104,6 +107,15 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         //Listado de pacieste desde el servicio web
         RequestPatient reuquestPatient = new RequestPatient("patients", this);
         reuquestPatient.findPatientsToDay();
+
+        PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
+        while (countValue < reuquestPatient.CountPatinetsToday() ){
+            patientsData[countValue] = new PatientsToday("Gabriel","4",R.drawable.usuario_icon);
+            countValue ++;
+        }
+
+        PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
+        listViewMenu.setAdapter(patientsAdapter);
 
         //callInteractionActivityByPatient ();
 

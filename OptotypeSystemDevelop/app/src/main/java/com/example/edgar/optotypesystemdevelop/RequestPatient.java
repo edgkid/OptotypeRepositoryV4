@@ -36,9 +36,26 @@ public class RequestPatient {
             httpRequestPatient.connectToResource((DashBoardActivity) context);
         }
 
-        /*HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
-        httpRequestPatient.connectToResource((DashBoardActivity) context);*/
-
     }
+
+    public int CountPatinetsToday (){
+
+        int number = 0;
+        PatientDbHelper PatientDb = new PatientDbHelper(this.context);
+        SQLiteDatabase db = PatientDb.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT name FROM patient_db_app", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                number = cursor.getCount();
+            } while(cursor.moveToNext());
+
+        }
+
+        return number;
+    }
+
+
 
 }
