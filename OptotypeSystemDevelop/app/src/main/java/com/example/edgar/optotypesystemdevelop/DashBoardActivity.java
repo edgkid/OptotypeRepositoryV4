@@ -22,7 +22,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     Context contextActivity;
 
     String [] menuDoctor = new String []{"Asociar Test", "Opción B", "Opción C" };
-    String [] menuPatients = new String []{"PA A", "PA B", "PA C"};
+    //String [] menuPatients = new String []{"PA A", "PA B", "PA C"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
