@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -70,17 +71,17 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         // Comentario para trabajar local desde la oficina
         SharedPreferences preferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
-        if (preferences.getString("roll", "defaultroll").equals("Doctor")){
+       /* if (preferences.getString("roll", "defaultroll").equals("Doctor")){
             ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
             listViewMenu.setAdapter(adapterMenuDoctor);
         }else if(preferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
-            /*ArrayAdapter<String> adapterMenuPatient = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuPatients);
-            listViewMenu.setAdapter(adapterMenuPatient);*/
+            //ArrayAdapter<String> adapterMenuPatient = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuPatients);
+            //listViewMenu.setAdapter(adapterMenuPatient);
             loadListPatientsToday();
-        }
+        }*/
 
         // linea temporal para trabajar en la oficina
-        //loadListPatientsToday();
+        loadListPatientsToday();
 
     }
 
@@ -91,18 +92,18 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
           int countValue = 0;
         //Listado de pacientes genericos para trabajar en la oficina
-        /*PatientsToday patiensData[] = new PatientsToday[]{
+        PatientsToday patiensData[] = new PatientsToday[]{
                 new PatientsToday("edgar","4",R.drawable.usuario_icon),
                 new PatientsToday("Gabriel","4",R.drawable.usuario_icon),
                 new PatientsToday("Juan","4",R.drawable.usuario_icon),
-        };*/
+        };
 
-        /*PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
-        listViewMenu.setAdapter(patientsAdapter);*/
+        PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
+        listViewMenu.setAdapter(patientsAdapter);
         ///////////////////////////////////////////// - Bloque a borar
 
         //Listado de pacieste desde el servicio web
-        RequestPatient reuquestPatient = new RequestPatient("patients", this);
+       /* RequestPatient reuquestPatient = new RequestPatient("patients", this);
         reuquestPatient.findPatientsToDay();
 
         PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
@@ -113,7 +114,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }
 
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
-        listViewMenu.setAdapter(patientsAdapter);
+        listViewMenu.setAdapter(patientsAdapter);*/
 
         callInteractionActivityByPatient ();
 
@@ -122,6 +123,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     public void callInteractionActivityByPatient (){
 
         final PatientsToday patient = new PatientsToday();
+        final Intent interactionActivity = new Intent(this, InteractionActivity.class);
 
         listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -134,12 +136,11 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 ImageView photo = (ImageView)findViewById(R.id.photoPatientToday);
                 patient.setPhoto(photo.getId());
                 String paciente = patient.getName() + " " + patient.getYearsOld() + " " + patient.getPhoto();
-                ///Toast.makeText(getApplicationContext(), paciente ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), paciente ,Toast.LENGTH_SHORT).show();
+
+                startActivity(interactionActivity);
             }
         });
-
-        Intent interactionActivity = new Intent(this, InteractionActivity.class);
-        startActivity(interactionActivity);
 
     }
 
