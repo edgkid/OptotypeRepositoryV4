@@ -93,9 +93,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
           int countValue = 0;
         //Listado de pacientes genericos para trabajar en la oficina
         PatientsToday patiensData[] = new PatientsToday[]{
-                new PatientsToday("edgar","4",R.drawable.usuario_icon),
-                new PatientsToday("Gabriel","4",R.drawable.usuario_icon),
-                new PatientsToday("Juan","4",R.drawable.usuario_icon),
+                new PatientsToday("Edgar Rafel Landaeta Malave","4",R.drawable.usuario_icon),
+                new PatientsToday("Gabriel Andres Landaeta Eljuri","4",R.drawable.usuario_icon),
+                new PatientsToday("Juan Francisco Landaeta Eljuri","4",R.drawable.usuario_icon),
         };
 
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
@@ -122,7 +122,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     public void callInteractionActivityByPatient (){
 
-        final PatientsToday patient = new PatientsToday();
+        //final PatientsToday patient = new PatientsToday();
         final Intent interactionActivity = new Intent(this, InteractionActivity.class);
 
         listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,14 +130,11 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 TextView textName = (TextView)view.findViewById(R.id.namePatientToday);
-                patient.setName(textName.getText().toString());
                 TextView textyears= (TextView)view.findViewById(R.id.yearsOldPatientToday);
-                patient.setYearsOld(textyears.getText().toString());
                 ImageView photo = (ImageView)findViewById(R.id.photoPatientToday);
-                patient.setPhoto(photo.getId());
-                String paciente = patient.getName() + " " + patient.getYearsOld() + " " + patient.getPhoto();
-                //Toast.makeText(getApplicationContext(), paciente ,Toast.LENGTH_SHORT).show();
-
+                interactionActivity.putExtra("Patient", textName.getText().toString());
+                interactionActivity.putExtra("YearsOld", textyears.getText().toString());
+                interactionActivity.putExtra("pohoto",textyears.getId());
                 startActivity(interactionActivity);
             }
         });
