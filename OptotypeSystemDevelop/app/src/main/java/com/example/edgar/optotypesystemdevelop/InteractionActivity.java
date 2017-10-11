@@ -32,10 +32,8 @@ public class InteractionActivity extends AppCompatActivity {
         if (patientExtras != null){
             textNames.setText( (String) patientExtras.get("Patient"));
             textLastNames.setText( (String) patientExtras.get("Patient"));
-            textYearsOld.setText( (String) patientExtras.get("YearsOld"));
+            textYearsOld.setText( (String) patientExtras.get("YearsOld") + " años");
         }
-
-
 
 
     }
