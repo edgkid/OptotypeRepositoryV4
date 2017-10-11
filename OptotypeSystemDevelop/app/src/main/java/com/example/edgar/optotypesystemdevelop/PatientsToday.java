@@ -6,6 +6,7 @@ package com.example.edgar.optotypesystemdevelop;
 
 public class PatientsToday {
 
+    private int idPatient;
     private String name;
     private String yearsOld;
     private int photo;
@@ -45,4 +46,11 @@ public class PatientsToday {
         this.photo = photo;
     }
 
+    public int getIdPatient() {
+        return idPatient;
+    }
+
+    public void setIdPatient(int idPatient) {
+        this.idPatient = idPatient;
+    }
 }
