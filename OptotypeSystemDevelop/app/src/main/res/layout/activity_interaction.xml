@@ -133,7 +133,7 @@
                 android:src="@drawable/camion_b"/>
 
             <ImageView
-                android:id="@+id/imageOptotypeOtionC"
+                android:id="@+id/imageOptotypeOptionC"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
