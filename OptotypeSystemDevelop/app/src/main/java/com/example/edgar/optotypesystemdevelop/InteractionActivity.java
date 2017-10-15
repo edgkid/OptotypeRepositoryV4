@@ -2,7 +2,9 @@ package com.example.edgar.optotypesystemdevelop;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,10 +28,14 @@ public class InteractionActivity extends AppCompatActivity {
     ImageView imageOptotypeB;
     ImageView imageOptotypeC;
 
+    TextView textDebug;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
+
+        textDebug = (TextView) findViewById(R.id.textDebug);
 
         textNames = (TextView) findViewById(R.id.textViewNAmePatient);
         textLastNames = (TextView) findViewById(R.id.textViewLastnamePatient);
@@ -40,12 +46,15 @@ public class InteractionActivity extends AppCompatActivity {
         imagePerfil = (ImageView) findViewById(R.id.imageViewInteractionPatient);
 
         imageOptotypeA = (ImageView) findViewById(R.id.imageOptotypeOptionA);
-        imageOptotypeA = (ImageView) findViewById(R.id.imageOptotypeOptionB);
-        imageOptotypeA = (ImageView) findViewById(R.id.imageOptotypeOptionC);
+        imageOptotypeB = (ImageView) findViewById(R.id.imageOptotypeOptionB);
+        imageOptotypeC = (ImageView) findViewById(R.id.imageOptotypeOptionC);
 
 
         imageOptotype.setOnLongClickListener(logClickListener);
 
+        imageOptotypeA.setOnDragListener(dragListenerA);
+        imageOptotypeB.setOnDragListener(dragListenerB);
+        imageOptotypeC.setOnDragListener(dragListenerC);
 
         Intent intentData = getIntent();
         Bundle patientExtras = intentData.getExtras();
@@ -76,27 +85,86 @@ public class InteractionActivity extends AppCompatActivity {
         }
     };
 
-    View.OnDragListener dragListener = new View.OnDragListener() {
+    View.OnDragListener dragListenerA = new View.OnDragListener() {
         @Override
         public boolean onDrag(View v, DragEvent event) {
 
             int dragEvent = event.getAction();
-
-            Log.d("message: ", "Drag");
             final View view = (View) event.getLocalState();
-            switch (dragEvent){
-                //Accion para mover elemento
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    break;
-                case DragEvent.ACTION_DROP:
-                    break;
 
+            actionDrag(dragEvent, view, 1);
 
-            }
             return true;
         }
     };
+
+    View.OnDragListener dragListenerB = new View.OnDragListener() {
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+
+            int dragEvent = event.getAction();
+            final View view = (View) event.getLocalState();
+
+            actionDrag(dragEvent, view, 2);
+
+            return true;
+        }
+    };
+
+    View.OnDragListener dragListenerC = new View.OnDragListener() {
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+
+            int dragEvent = event.getAction();
+            final View view = (View) event.getLocalState();
+
+            actionDrag(dragEvent, view, 3);
+
+            return true;
+        }
+    };
+
+    public void actionDrag (int dragEvent, View view, int option){
+
+        switch (dragEvent){
+            //Accion para mover elemento
+            case DragEvent.ACTION_DRAG_ENTERED:
+                //identificar si es correcta la selección
+                if (option == 1 ) {
+                    imageOptotypeA.setBackgroundColor(Color.rgb(0,255,102));
+                }else if(option == 2){
+                    imageOptotypeB.setBackgroundColor(Color.rgb(0,255,102));
+                }else if (option == 3){
+                    imageOptotypeC.setBackgroundColor(Color.rgb(0,255,102));
+                }
+                break;
+
+            case DragEvent.ACTION_DRAG_EXITED:
+
+                if (option == 1 ) {
+                    imageOptotypeA.setBackgroundColor(Color.rgb(255,255,255));
+                }else if(option == 2){
+                    imageOptotypeB.setBackgroundColor(Color.rgb(255,255,255));
+                }else if (option == 3){
+                    imageOptotypeC.setBackgroundColor(Color.rgb(255,255,255));
+                }
+
+                break;
+            case DragEvent.ACTION_DROP:
+
+                //accionar sobre el elemeno seleccionado
+
+                if (option == 1) {
+                    textDebug.setText("solto sobre Option A");
+                }else if (option == 2){
+                    textDebug.setText("solto sobre Option B");
+                }else if (option == 3){
+                    textDebug.setText("solto sobre Option C");
+                }
+
+                break;
+        }
+    }
+
 
 }

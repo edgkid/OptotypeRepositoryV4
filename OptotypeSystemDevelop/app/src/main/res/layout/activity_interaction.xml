@@ -107,6 +107,12 @@
                 android:layout_marginLeft="150dp"
                 android:src="@drawable/camion_a" />
 
+            <TextView
+                android:id="@+id/textDebug"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Debug"/>
+
 
         </LinearLayout>
 
