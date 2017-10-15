@@ -105,7 +105,7 @@
                 android:layout_height="350dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="150dp"
-                android:src="@drawable/camion_a" />
+                android:src="@drawable/camion_1" />
 
             <TextView
                 android:id="@+id/textDebug"
@@ -128,7 +128,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/camion_a"/>
+                android:src="@drawable/camion_1"/>
 
             <ImageView
                 android:id="@+id/imageOptotypeOptionB"
@@ -136,7 +136,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/camion_b"/>
+                android:src="@drawable/camion_2"/>
 
             <ImageView
                 android:id="@+id/imageOptotypeOptionC"
@@ -144,7 +144,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/barco_a"/>
+                android:src="@drawable/barco_1"/>
 
         </LinearLayout>
 
