@@ -18,7 +18,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     Button logOut;
     ImageView imageUser;
-    TextView userName;
+   // TextView userName;
 
     ListView listViewMenu;
     Context contextActivity;
@@ -34,7 +34,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         contextActivity = this;
         logOut = (Button) findViewById(R.id.buttonLogout);
         imageUser = (ImageView) findViewById(R.id.imageViewLoginUser);
-        userName = (TextView) findViewById(R.id.textViewLoginUser);
+        //userName = (TextView) findViewById(R.id.textViewLoginUser);
         logOut.setOnClickListener((View.OnClickListener) contextActivity);
 
         listViewMenu = (ListView) findViewById(R.id.listViewDashBoardMenu);
