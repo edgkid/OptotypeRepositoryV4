@@ -156,10 +156,13 @@ public class InteractionActivity extends AppCompatActivity {
 
                 if (option == 1) {
                     textDebug.setText("solto sobre Option A");
+                    imageOptotypeA.setBackgroundColor(Color.rgb(255,255,255));
                 }else if (option == 2){
                     textDebug.setText("solto sobre Option B");
+                    imageOptotypeB.setBackgroundColor(Color.rgb(255,255,255));
                 }else if (option == 3){
                     textDebug.setText("solto sobre Option C");
+                    imageOptotypeC.setBackgroundColor(Color.rgb(255,255,255));
                 }
 
                 break;
