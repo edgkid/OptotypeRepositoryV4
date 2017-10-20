@@ -74,7 +74,7 @@ public class InteractionElements {
     //metodo para probar llenado de elementos
     public void viewInteractionElements(){
 
-        Log.d("message: ", "siz = " + this.elements.size());
+        Log.d("message: ", "size = " + this.elements.size());
 
     }
 

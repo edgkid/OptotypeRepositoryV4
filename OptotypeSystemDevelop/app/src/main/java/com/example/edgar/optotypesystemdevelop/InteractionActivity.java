@@ -175,18 +175,27 @@ public class InteractionActivity extends AppCompatActivity {
                     imageOptotypeC.setBackgroundColor(Color.rgb(255,255,255));
                 }
 
+                refreshInteractionActivity();
+
                 break;
         }
     }
 
     public void refreshInteractionActivity(){
 
-        String image = "barco_1";
+        String image;
         String resource = "drawable";
 
-        textDebug.setText(elements.getElements().get(1).getOptotypeCode());
+
+        Double number = Math.floor(Math.random() * elements.getElements().size());
+        Log.d("message: ", String.valueOf(number.intValue()));
+
+        image = elements.getElements().get(number.intValue()).getOptotypeCode();
+
+        Log.d("image: ", image);
 
         imageOptotype.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+        imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
 
 
     }
