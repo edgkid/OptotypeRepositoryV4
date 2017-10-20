@@ -185,18 +185,27 @@ public class InteractionActivity extends AppCompatActivity {
 
         String image;
         String resource = "drawable";
-
+        int position = 0;
+        int sizeElements = 0;
 
         Double number = Math.floor(Math.random() * elements.getElements().size());
-        Log.d("message: ", String.valueOf(number.intValue()));
+        position = number.intValue();
+        sizeElements = elements.getElements().size();
+        Log.d("message: ", String.valueOf(position));
 
-        image = elements.getElements().get(number.intValue()).getOptotypeCode();
-
-        Log.d("image: ", image);
-
+        image = elements.getElements().get(position).getOptotypeCode();
         imageOptotype.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
         imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+        // revisar como debe finalizar la interacción
+        elements.getElements().remove(position);
 
+        position ++;
+        image = elements.getElements().get(elements.validateElements(position, sizeElements)).getOptotypeCode();
+        imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+
+        position ++;
+        image = elements.getElements().get(elements.validateElements(position, sizeElements)).getOptotypeCode();
+        imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
 
     }
 
