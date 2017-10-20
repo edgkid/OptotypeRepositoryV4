@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class InteractionActivity extends AppCompatActivity {
 
     TextView textNames;
@@ -30,11 +32,15 @@ public class InteractionActivity extends AppCompatActivity {
 
     TextView textDebug;
 
+    InteractionElements elements;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
 
+        elements = new InteractionElements();
+        elements.fillInteractionElements();
         textDebug = (TextView) findViewById(R.id.textDebug);
 
         textNames = (TextView) findViewById(R.id.textViewNAmePatient);
@@ -63,7 +69,11 @@ public class InteractionActivity extends AppCompatActivity {
             textNames.setText( (String) patientExtras.get("Patient"));
             textLastNames.setText( (String) patientExtras.get("Patient"));
             textYearsOld.setText( (String) patientExtras.get("YearsOld") + " años");
+
+            refreshInteractionActivity();
+
         }
+
     }
 
     View.OnLongClickListener  logClickListener = new View.OnLongClickListener() {
@@ -167,6 +177,18 @@ public class InteractionActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    public void refreshInteractionActivity(){
+
+        String image = "barco_1";
+        String resource = "drawable";
+
+        textDebug.setText(elements.getElements().get(1).getOptotypeCode());
+
+        imageOptotype.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+
+
     }
 
 

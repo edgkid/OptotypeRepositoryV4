@@ -1,6 +1,10 @@
 package com.example.edgar.optotypesystemdevelop;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Locale;
 
 /**
  * Created by Edgar on 20/10/2017.
@@ -13,6 +17,9 @@ public class InteractionElements {
     public InteractionElements() {
     }
 
+    public ArrayList<Optotype> getElements() {
+        return elements;
+    }
 
     public void fillInteractionElements (){
 
@@ -61,8 +68,17 @@ public class InteractionElements {
         elements.add(optotype);
         /////////////////////////////////////////////
 
+    }
+
+
+    //metodo para probar llenado de elementos
+    public void viewInteractionElements(){
+
+        Log.d("message: ", "siz = " + this.elements.size());
 
     }
+
+
 
 
 }
