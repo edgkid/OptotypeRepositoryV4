@@ -141,11 +141,20 @@ public class InteractionActivity extends AppCompatActivity {
             case DragEvent.ACTION_DRAG_ENTERED:
                 //identificar si es correcta la selección
                 if (option == 1 ) {
-                    imageOptotypeA.setBackgroundColor(Color.rgb(0,255,102));
+                    if (imageOptotypeA.getTag().equals(imageOptotype.getTag()))
+                        imageOptotypeA.setBackgroundColor(Color.rgb(0,255,102));
+                    else
+                        imageOptotypeA.setBackgroundColor(Color.rgb(183,28,28));
                 }else if(option == 2){
-                    imageOptotypeB.setBackgroundColor(Color.rgb(0,255,102));
+                    if (imageOptotypeB.getTag().equals(imageOptotype.getTag()))
+                        imageOptotypeB.setBackgroundColor(Color.rgb(0,255,102));
+                    else
+                        imageOptotypeB.setBackgroundColor(Color.rgb(183,28,28));
                 }else if (option == 3){
-                    imageOptotypeC.setBackgroundColor(Color.rgb(0,255,102));
+                    if (imageOptotypeC.getTag().equals(imageOptotype.getTag()))
+                        imageOptotypeC.setBackgroundColor(Color.rgb(0,255,102));
+                    else
+                        imageOptotypeC.setBackgroundColor(Color.rgb(183,28,28));
                 }
                 break;
 
@@ -195,6 +204,7 @@ public class InteractionActivity extends AppCompatActivity {
 
         image = elements.getElements().get(position).getOptotypeCode();
         imageOptotype.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+        imageOptotype.setTag(1);
         assignOptotypeOptions(position, sizeElements, image, resource);
 
     }
@@ -204,40 +214,53 @@ public class InteractionActivity extends AppCompatActivity {
         if (elements.primeNumber(position, size) && elements.evenNumber(position)){
 
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeA.setTag(1);
             if (size != 1 )
                 elements.getElements().remove(position);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeB.setTag(2);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeC.setTag(3);
 
         }else if (elements.primeNumber(position, size) || ! elements.evenNumber(position)){
 
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeC.setTag(1);
             if (size != 1 )
                 elements.getElements().remove(position);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeB.setTag(2);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeA.setTag(3);
 
         }else{
 
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeB.setTag(1);
             if (size != 1 )
                 elements.getElements().remove(position);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeA.setTag(2);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            imageOptotypeC.setTag(3);
 
         }
+
+    }
+
+    public void compareImageView (){
 
     }
 
