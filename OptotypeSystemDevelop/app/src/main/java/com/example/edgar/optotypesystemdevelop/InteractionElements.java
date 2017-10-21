@@ -65,11 +65,39 @@ public class InteractionElements {
     public int validateElements (int position, int sizeElements){
 
         if ((position + 1 >= sizeElements)){
-            position = 1;
+            position = 0;
         }
 
         return position;
     }
 
+    public boolean evenNumber (int position){
+
+        boolean value = false;
+
+        if ((position % 2) == 0){
+            value = true;
+        }
+
+        return value;
+    }
+
+    public boolean primeNumber(int position, int size){
+
+        boolean value = false;
+        int results = 0;
+
+        for (int i = 1; i<=size; i++){
+
+            if (position % i == 0)
+                results ++;
+            if (results > 2){
+                value = true;
+                break;
+            }
+        }
+
+        return value;
+    }
 
 }

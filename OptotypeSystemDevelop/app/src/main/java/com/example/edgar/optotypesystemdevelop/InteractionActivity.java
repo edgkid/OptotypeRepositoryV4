@@ -195,17 +195,49 @@ public class InteractionActivity extends AppCompatActivity {
 
         image = elements.getElements().get(position).getOptotypeCode();
         imageOptotype.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-        imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-        // revisar como debe finalizar la interacción
-        elements.getElements().remove(position);
+        assignOptotypeOptions(position, sizeElements, image, resource);
 
-        position ++;
-        image = elements.getElements().get(elements.validateElements(position, sizeElements)).getOptotypeCode();
-        imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+    }
 
-        position ++;
-        image = elements.getElements().get(elements.validateElements(position, sizeElements)).getOptotypeCode();
-        imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+    public void assignOptotypeOptions(int position, int size, String image, String resource){
+
+        if (elements.primeNumber(position, size) && elements.evenNumber(position)){
+
+            imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            if (size != 1 )
+                elements.getElements().remove(position);
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+
+        }else if (elements.primeNumber(position, size) || ! elements.evenNumber(position)){
+
+            imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            if (size != 1 )
+                elements.getElements().remove(position);
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+
+        }else{
+
+            imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            if (size != 1 )
+                elements.getElements().remove(position);
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
+
+        }
 
     }
 
