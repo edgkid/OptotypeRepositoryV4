@@ -199,9 +199,10 @@ public class InteractionActivity extends AppCompatActivity {
         sizeElements = elements.getElements().size();
         Log.d("message: ", String.valueOf(position));
 
+
         image = elements.getElements().get(position).getOptotypeCode();
         imageOptotype.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-        imageOptotype.setTag(1);
+        imageOptotype.setTag(image);
         assignOptotypeOptions(position, sizeElements, image, resource);
 
     }
@@ -211,53 +212,49 @@ public class InteractionActivity extends AppCompatActivity {
         if (elements.primeNumber(position, size) && elements.evenNumber(position)){
 
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeA.setTag(1);
+            imageOptotypeA.setTag(image);
             if (size != 1 )
                 elements.getElements().remove(position);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeB.setTag(2);
+            imageOptotypeB.setTag(image);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeC.setTag(3);
+            imageOptotypeC.setTag(image);
 
         }else if (elements.primeNumber(position, size) || ! elements.evenNumber(position)){
 
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeC.setTag(1);
+            imageOptotypeC.setTag(image);
             if (size != 1 )
                 elements.getElements().remove(position);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeB.setTag(2);
+            imageOptotypeB.setTag(image);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeA.setTag(3);
+            imageOptotypeA.setTag(image);
 
         }else{
 
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeB.setTag(1);
+            imageOptotypeB.setTag(image);
             if (size != 1 )
                 elements.getElements().remove(position);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeA.setTag(2);
+            imageOptotypeA.setTag(image);
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
-            imageOptotypeC.setTag(3);
+            imageOptotypeC.setTag(image);
 
         }
-
-    }
-
-    public void compareImageView (){
 
     }
 
