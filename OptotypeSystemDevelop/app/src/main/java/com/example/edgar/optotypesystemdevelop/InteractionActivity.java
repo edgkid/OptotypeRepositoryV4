@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class InteractionActivity extends AppCompatActivity {
 
@@ -30,6 +34,7 @@ public class InteractionActivity extends AppCompatActivity {
     TextView textDebug;
     TextView textDebugB;
 
+    Interaction controlInteraction;
     InteractionElements elements;
 
     @Override
@@ -37,6 +42,7 @@ public class InteractionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
 
+        controlInteraction = new Interaction();
         elements = new InteractionElements();
         elements.fillInteractionElements();
 
@@ -143,17 +149,17 @@ public class InteractionActivity extends AppCompatActivity {
                 //identificar si es correcta la selección
                 if (option == 1 ) {
                     if (imageOptotypeA.getTag().equals(imageOptotype.getTag()))
-                        workWithRealOption(imageOptotype, imageOptotypeA);
+                        imageOptotypeA.setBackgroundColor(Color.rgb(0, 255, 102));
                     else
                         imageOptotypeA.setBackgroundColor(Color.rgb(183,28,28));
                 }else if(option == 2){
                     if (imageOptotypeB.getTag().equals(imageOptotype.getTag()))
-                        workWithRealOption(imageOptotype, imageOptotypeB);
+                        imageOptotypeB.setBackgroundColor(Color.rgb(0, 255, 102));
                     else
                         imageOptotypeB.setBackgroundColor(Color.rgb(183,28,28));
                 }else if (option == 3){
                     if (imageOptotypeC.getTag().equals(imageOptotype.getTag()))
-                        workWithRealOption(imageOptotype, imageOptotypeC);
+                        imageOptotypeC.setBackgroundColor(Color.rgb(0, 255, 102));
                     else
                         imageOptotypeC.setBackgroundColor(Color.rgb(183,28,28));
                 }
@@ -174,19 +180,24 @@ public class InteractionActivity extends AppCompatActivity {
 
                 //accionar sobre el elemeno seleccionado
 
-                if (option == 1) {
-                    textDebug.setText("solto sobre Option A");
-                    imageOptotypeA.setBackgroundColor(Color.rgb(255,255,255));
-                }else if (option == 2){
-                    textDebug.setText("solto sobre Option B");
-                    imageOptotypeB.setBackgroundColor(Color.rgb(255,255,255));
+                if (option == 1 ) {
+                    if (imageOptotypeA.getTag().equals(imageOptotype.getTag()))
+                        workWithRealOption(imageOptotype, imageOptotypeA);
+                    else
+                        workWithBackOption(imageOptotype, imageOptotypeA);
+                }else if(option == 2){
+                    if (imageOptotypeB.getTag().equals(imageOptotype.getTag()))
+                        workWithRealOption(imageOptotype, imageOptotypeB);
+                    else
+                        workWithBackOption(imageOptotype, imageOptotypeB);
                 }else if (option == 3){
-                    textDebug.setText("solto sobre Option C");
-                    imageOptotypeC.setBackgroundColor(Color.rgb(255,255,255));
+                    if (imageOptotypeC.getTag().equals(imageOptotype.getTag()))
+                        workWithRealOption(imageOptotype, imageOptotypeC);
+                    else
+                        workWithBackOption(imageOptotype, imageOptotypeC);
                 }
 
                 refreshInteractionActivity();
-
                 break;
         }
     }
@@ -217,8 +228,7 @@ public class InteractionActivity extends AppCompatActivity {
 
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
             imageOptotypeA.setTag(image);
-            /*if (size != 1 )
-                elements.getElements().remove(position);*/
+
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
@@ -232,13 +242,13 @@ public class InteractionActivity extends AppCompatActivity {
 
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
             imageOptotypeC.setTag(image);
-            /*if (size != 1 )
-                elements.getElements().remove(position);*/
+
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
             imageOptotypeB.setTag(image);
             position ++;
+
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
             imageOptotypeA.setTag(image);
@@ -247,12 +257,12 @@ public class InteractionActivity extends AppCompatActivity {
 
             imageOptotypeB.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
             imageOptotypeB.setTag(image);
-            /*if (size != 1 )
-                elements.getElements().remove(position);*/
+
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeA.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
             imageOptotypeA.setTag(image);
+
             position ++;
             image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
             imageOptotypeC.setImageResource(this.getResources().getIdentifier(image, resource, this.getPackageName()));
@@ -264,20 +274,29 @@ public class InteractionActivity extends AppCompatActivity {
 
     public void workWithRealOption (ImageView optotype, ImageView option){
 
-        //Optotype realOptotype = new Optotype ();
-        //String[] values = option.getTag().toString().split("_");
-
-        option.setBackgroundColor(Color.rgb(0, 255, 102));
-        //// esto se eliminara
+        option.setBackgroundColor(Color.rgb(255, 255, 255));
         textDebug.setText(optotype.getTag().toString());
         textDebugB.setText(option.getTag().toString());
-        /////////////////
-       //realOptotype.setOptotypeCode(option.getTag().toString());
-        //realOptotype.setOptotypeName(values[0]);
 
+        ArrayList<Optotype> optotypes = elements.getElements();
+        Iterator<Optotype> iterator = optotypes.iterator();
+        int sizeElements =0;
 
+        while (iterator.hasNext()){
+            if (iterator.next().getOptotypeCode().equals(optotype.getTag())){
+                textDebugB.setText(optotypes.get(sizeElements).getOptotypeCode());
+                if (sizeElements != 0 )
+                    elements.getElements().remove(sizeElements);
+                break;
+            }
 
+            sizeElements ++;
+        }
 
+    }
+
+    public void workWithBackOption (ImageView optotype, ImageView option){
+        option.setBackgroundColor(Color.rgb(255, 255, 255));
     }
 
 }
