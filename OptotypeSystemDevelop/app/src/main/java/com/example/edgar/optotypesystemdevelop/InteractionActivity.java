@@ -281,16 +281,29 @@ public class InteractionActivity extends AppCompatActivity {
         ArrayList<Optotype> optotypes = elements.getElements();
         Iterator<Optotype> iterator = optotypes.iterator();
         int sizeElements =0;
+        int total =1;
 
         while (iterator.hasNext()){
             if (iterator.next().getOptotypeCode().equals(optotype.getTag())){
-                textDebugB.setText(optotypes.get(sizeElements).getOptotypeCode());
-                if (sizeElements != 0 )
+                controlInteraction.getOptotypes().add(optotypes.get(sizeElements));
+
+                if (sizeElements != 0 ) {
+                    controlInteraction.setTotalOptotypes(total);
                     elements.getElements().remove(sizeElements);
+                }
+                total ++;
                 break;
             }
-
             sizeElements ++;
+
+            textDebugB.setText(Integer.toString(controlInteraction.getTotalOptotypes()));
+            if (controlInteraction.getTotalOptotypes() == 12){
+
+                Intent testActivity = new Intent(this, TestActivity.class);
+                startActivity(testActivity);
+
+            }
+
         }
 
     }
