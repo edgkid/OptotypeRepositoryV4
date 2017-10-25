@@ -26,6 +26,7 @@ public class InteractionElements {
         ArrayList <String> optotypes = new ArrayList<String>();
         Optotype optotype;
         // esto sera reemplazado por una consulta
+        int count = 1;
         optotypes.add("avion_1");
         optotypes.add("camion_1");
         optotypes.add("camion_2");
@@ -44,11 +45,11 @@ public class InteractionElements {
 
         for (String element : optotypes){
             optotype = new Optotype();
-            optotype.setIdOptotype("1");
-            optotype.setIdOptotypeServer("1");
+            optotype.setIdOptotype(Integer.toString(count));
+            optotype.setIdOptotypeServer(Integer.toString(count));
             optotype.setOptotypeName(element);
             optotype.setOptotypeCode(element);
-
+            count++;
             elements.add(optotype);
         }
 

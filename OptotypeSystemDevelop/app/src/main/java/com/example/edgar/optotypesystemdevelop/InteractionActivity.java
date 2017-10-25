@@ -40,6 +40,7 @@ public class InteractionActivity extends AppCompatActivity {
         elements = new InteractionElements();
         elements.fillInteractionElements();
 
+
         textDebug = (TextView) findViewById(R.id.textDebug);
         textDebugB = (TextView) findViewById(R.id.textDebug2);
 
@@ -263,9 +264,19 @@ public class InteractionActivity extends AppCompatActivity {
 
     public void workWithRealOption (ImageView optotype, ImageView option){
 
+        //Optotype realOptotype = new Optotype ();
+        //String[] values = option.getTag().toString().split("_");
+
         option.setBackgroundColor(Color.rgb(0, 255, 102));
+        //// esto se eliminara
         textDebug.setText(optotype.getTag().toString());
         textDebugB.setText(option.getTag().toString());
+        /////////////////
+       //realOptotype.setOptotypeCode(option.getTag().toString());
+        //realOptotype.setOptotypeName(values[0]);
+
+
+
 
     }
 
