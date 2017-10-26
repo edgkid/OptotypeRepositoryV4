@@ -14,6 +14,7 @@ public class Interaction {
     private int totalOptotypes;
 
     public Interaction() {
+        this.totalOptotypes = 1;
     }
 
     public Interaction(Patient patient, ArrayList<Optotype> optotypes, int position, int totalOptotypes) {
