@@ -286,6 +286,7 @@ public class InteractionActivity extends AppCompatActivity {
         total = controlInteraction.getTotalOptotypes();
 
         while (iterator.hasNext()){
+
             if (iterator.next().getOptotypeCode().equals(optotype.getTag())){
                 total ++;
                 controlInteraction.setTotalOptotypes(total);
@@ -304,6 +305,7 @@ public class InteractionActivity extends AppCompatActivity {
             if (controlInteraction.getTotalOptotypes() == 12){
 
                 Intent testActivity = new Intent(this, TestActivity.class);
+                testActivity.putExtra("optoPrueba",controlInteraction.getOptotypes().get(4).getOptotypeName());
                 startActivity(testActivity);
 
             }
@@ -315,5 +317,6 @@ public class InteractionActivity extends AppCompatActivity {
     public void workWithBackOption (ImageView optotype, ImageView option){
         option.setBackgroundColor(Color.rgb(255, 255, 255));
     }
+
 
 }
