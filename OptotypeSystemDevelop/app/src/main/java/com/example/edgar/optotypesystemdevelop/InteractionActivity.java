@@ -36,6 +36,7 @@ public class InteractionActivity extends AppCompatActivity {
 
     Interaction controlInteraction;
     InteractionElements elements;
+    Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -305,6 +306,8 @@ public class InteractionActivity extends AppCompatActivity {
                 Intent testActivity = new Intent(this, TestActivity.class);
                 testActivity.putExtra("optoPrueba",controlInteraction.getOptotypes().get(4).getOptotypeName());
                 startActivity(testActivity);
+                /*RequestInteraction requestInteraction = new RequestInteraction(this);
+                requestInteraction.insertInteractionActivityData(controlInteraction.getOptotypes(), patient);*/
             }
         }
     }
