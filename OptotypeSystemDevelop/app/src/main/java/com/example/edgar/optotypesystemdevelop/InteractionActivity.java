@@ -274,14 +274,14 @@ public class InteractionActivity extends AppCompatActivity {
 
     public void workWithRealOption (ImageView optotype, ImageView option){
 
+        int sizeElements =0;
+        int total = 0;
         option.setBackgroundColor(Color.rgb(255, 255, 255));
-        textDebug.setText(optotype.getTag().toString());
-        textDebugB.setText(option.getTag().toString());
+        /*textDebug.setText(optotype.getTag().toString());
+        textDebugB.setText(option.getTag().toString());*/
 
         ArrayList<Optotype> optotypes = elements.getElements();
         Iterator<Optotype> iterator = optotypes.iterator();
-        int sizeElements =0;
-        int total = 0;
 
         total = controlInteraction.getTotalOptotypes();
 
@@ -296,22 +296,17 @@ public class InteractionActivity extends AppCompatActivity {
                     controlInteraction.setTotalOptotypes(total);
                     elements.getElements().remove(sizeElements);
                 }
-
                 break;
             }
             sizeElements ++;
-
 
             if (controlInteraction.getTotalOptotypes() == 12){
 
                 Intent testActivity = new Intent(this, TestActivity.class);
                 testActivity.putExtra("optoPrueba",controlInteraction.getOptotypes().get(4).getOptotypeName());
                 startActivity(testActivity);
-
             }
-
         }
-
     }
 
     public void workWithBackOption (ImageView optotype, ImageView option){
