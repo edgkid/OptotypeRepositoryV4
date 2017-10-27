@@ -13,9 +13,9 @@ public class InteractionDbContract {
         public static final String TABLE_NAME = "interaction_db_app";
 
         public static final String ID = "idInterection";
-        public static final String NAME = "idOptotype";
-        public static final String LASTNAME = "idPatient";
-        public static final String MIDDLENAME = "optotypeCode";
+        public static final String IDOPTOTYPE = "idOptotype";
+        public static final String IDPATIENT = "idPatient";
+        public static final String OPTOTYPECODE = "optotypeCode";
 
     }
 
