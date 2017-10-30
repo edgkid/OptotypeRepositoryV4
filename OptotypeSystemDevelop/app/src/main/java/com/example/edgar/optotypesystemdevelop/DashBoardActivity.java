@@ -23,7 +23,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     ListView listViewMenu;
     Context contextActivity;
 
-    String [] menuDoctor = new String []{"Asociar Test", "Opción B", "Opción C" };
+    String [] menuDoctor;
     //String [] menuPatients = new String []{"PA A", "PA B", "PA C"};
 
     @Override
@@ -81,7 +81,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }*/
 
         // linea temporal para trabajar en la oficina
-        loadListPatientsToday();
+
+        ///loadListPatientsToday();
+        loadListMenuDoctor();
 
     }
 
@@ -120,6 +122,20 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    public void loadListMenuDoctor(){
+
+        menuDoctor = new String []{ "Nueva Consulta",
+                                    "Modificar Consulta",
+                                    "Eliminar Consulta",
+                                    "Consulta del Día" };
+
+        ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
+        listViewMenu.setAdapter(adapterMenuDoctor);
+
+        callActivitiesByDoctor();
+
+    }
+
     public void callInteractionActivityByPatient (){
 
         //final PatientsToday patient = new PatientsToday();
@@ -138,6 +154,37 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 startActivity(interactionActivity);
             }
         });
+
+    }
+
+
+    public void callActivitiesByDoctor (){
+
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position){
+
+                    case 0:
+                        Toast.makeText(contextActivity,"Nueva Consulta",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(contextActivity,"Modificar Consulta",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(contextActivity,"Eliminar Consulta",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(contextActivity,"Consultas del Día",Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+
+            }
+        });
+
 
     }
 
