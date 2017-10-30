@@ -64,11 +64,12 @@ public class RequestPatient {
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld  FROM patient_db_app", null);
+        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient  FROM patient_db_app", null);
 
         if (cursor.moveToFirst()) {
             do {
                 PatientsToday patient = new PatientsToday();
+                patient.setIdPatient(Integer.parseInt(cursor.getString(5)));
                 patient.setName(cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
                 patient.setYearsOld(cursor.getString(4));
                 patientsData[value] = patient;

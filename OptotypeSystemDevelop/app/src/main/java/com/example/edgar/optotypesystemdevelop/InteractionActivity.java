@@ -303,11 +303,11 @@ public class InteractionActivity extends AppCompatActivity {
 
             if (controlInteraction.getTotalOptotypes() == 12){
 
-                Intent testActivity = new Intent(this, TestActivity.class);
+                /*Intent testActivity = new Intent(this, TestActivity.class);
                 testActivity.putExtra("optoPrueba",controlInteraction.getOptotypes().get(4).getOptotypeName());
-                startActivity(testActivity);
-                /*RequestInteraction requestInteraction = new RequestInteraction(this);
-                requestInteraction.insertInteractionActivityData(controlInteraction.getOptotypes(), patient);*/
+                startActivity(testActivity);*/
+                RequestInteraction requestInteraction = new RequestInteraction(this);
+                requestInteraction.insertInteractionActivityData(controlInteraction.getOptotypes(), patient);
             }
         }
     }

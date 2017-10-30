@@ -18,6 +18,7 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        String value = "";
 
         context = this;
 
@@ -31,10 +32,17 @@ public class TestActivity extends AppCompatActivity {
 
 
         Cursor cursor = db.rawQuery("SELECT optotypeCode FROM interaction_db_app", null);
-        if (cursor.moveToFirst()){
+        /*if (cursor.moveToFirst()){
             textView.setText( "Datos Registrados");
         }else{
             textView.setText( "Datos no registrados");
+        }*/
+        if (cursor.moveToFirst()){
+            do{
+                value = value + cursor.getString(0) + " ";
+            }while(cursor.moveToNext());
+
+            textView.setText(value);
         }
 
 
