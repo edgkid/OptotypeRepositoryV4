@@ -127,7 +127,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         menuDoctor = new String []{ "Nueva Consulta",
                                     "Modificar Consulta",
                                     "Eliminar Consulta",
-                                    "Consulta del Día" };
+                                    "Consulta del Día",
+                                    "Nuevo Paciente"
+        };
 
         ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
         listViewMenu.setAdapter(adapterMenuDoctor);
@@ -179,9 +181,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                     case 3:
                         Toast.makeText(contextActivity,"Consultas del Día",Toast.LENGTH_SHORT).show();
                         break;
-
+                    case 4:
+                        Toast.makeText(contextActivity,"Nuevo Paciente",Toast.LENGTH_SHORT).show();
+                        break;
                 }
-
             }
         });
 
