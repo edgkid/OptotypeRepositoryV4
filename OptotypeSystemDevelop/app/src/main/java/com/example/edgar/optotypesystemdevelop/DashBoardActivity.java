@@ -173,7 +173,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(contextActivity,"Nueva Consulta",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
-                        Toast.makeText(contextActivity,"Modificar Consulta",Toast.LENGTH_SHORT).show();
+                        newActivity = new Intent(contextActivity, ModifyAppoinmentActivity.class);
                         break;
                     case 2:
                         newActivity = new Intent(contextActivity, DeleteAppoinmentActivity.class);

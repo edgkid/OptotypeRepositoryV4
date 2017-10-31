@@ -22,7 +22,8 @@
         <activity android:name=".InteractionActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".AppoinmentActivity" />
-        <activity android:name=".DeleteAppoinmentActivity"></activity>
+        <activity android:name=".DeleteAppoinmentActivity" />
+        <activity android:name=".ModifyAppoinmentActivity"></activity>
     </application>
 
 </manifest>
