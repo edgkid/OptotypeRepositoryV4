@@ -166,6 +166,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent newActivity = null;
                 switch (position){
 
                     case 0:
@@ -175,16 +176,16 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(contextActivity,"Modificar Consulta",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-                        Toast.makeText(contextActivity,"Eliminar Consulta",Toast.LENGTH_SHORT).show();
+                        newActivity = new Intent(contextActivity, DeleteAppoinmentActivity.class);
                         break;
                     case 3:
-                        Intent newActivity = new Intent(contextActivity, AppoinmentActivity.class);
-                        startActivity(newActivity);
+                        newActivity = new Intent(contextActivity, AppoinmentActivity.class);
                         break;
                     case 4:
                         Toast.makeText(contextActivity,"Nuevo Paciente",Toast.LENGTH_SHORT).show();
                         break;
                 }
+                startActivity(newActivity);
             }
         });
 

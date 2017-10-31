@@ -21,7 +21,8 @@
         <activity android:name=".DashBoardActivity" />
         <activity android:name=".InteractionActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".AppoinmentActivity"></activity>
+        <activity android:name=".AppoinmentActivity" />
+        <activity android:name=".DeleteAppoinmentActivity"></activity>
     </application>
 
 </manifest>
