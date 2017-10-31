@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".DashBoardActivity" />
         <activity android:name=".InteractionActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".AppoinmentActivity"></activity>
     </application>
 
 </manifest>

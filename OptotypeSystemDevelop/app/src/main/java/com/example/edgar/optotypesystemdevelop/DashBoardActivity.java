@@ -82,7 +82,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         // linea temporal para trabajar en la oficina
 
-        ///loadListPatientsToday();
+        //loadListPatientsToday();
         loadListMenuDoctor();
 
     }
@@ -166,7 +166,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 switch (position){
 
                     case 0:
@@ -179,7 +178,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(contextActivity,"Eliminar Consulta",Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        Toast.makeText(contextActivity,"Consultas del Día",Toast.LENGTH_SHORT).show();
+                        Intent newActivity = new Intent(contextActivity, AppoinmentActivity.class);
+                        startActivity(newActivity);
                         break;
                     case 4:
                         Toast.makeText(contextActivity,"Nuevo Paciente",Toast.LENGTH_SHORT).show();
