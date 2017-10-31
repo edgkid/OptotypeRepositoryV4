@@ -124,15 +124,16 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     public void loadListMenuDoctor(){
 
-        menuDoctor = new String []{ "Nueva Consulta",
-                                    "Modificar Consulta",
-                                    "Eliminar Consulta",
-                                    "Consulta del Día",
-                                    "Nuevo Paciente"
+        ItemMenuDoctor itemsData[] = new ItemMenuDoctor[]{
+                new ItemMenuDoctor(R.drawable.usuario_icon, "Nueva Consulta"),
+                new ItemMenuDoctor(R.drawable.usuario_icon, "Modificar Consulta"),
+                new ItemMenuDoctor(R.drawable.usuario_icon, "Eliminar Consulta"),
+                new ItemMenuDoctor(R.drawable.usuario_icon, "Consulta del Día"),
+                new ItemMenuDoctor(R.drawable.usuario_icon, "Nuevo Paciente")
         };
 
-        ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
-        listViewMenu.setAdapter(adapterMenuDoctor);
+        ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
+        listViewMenu.setAdapter(itemMenuDoctorAdapter);
 
         callActivitiesByDoctor();
 
