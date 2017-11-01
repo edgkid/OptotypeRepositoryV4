@@ -125,11 +125,11 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     public void loadListMenuDoctor(){
 
         ItemMenuDoctor itemsData[] = new ItemMenuDoctor[]{
-                new ItemMenuDoctor(R.drawable.usuario_icon, "Nueva Consulta"),
-                new ItemMenuDoctor(R.drawable.usuario_icon, "Modificar Consulta"),
-                new ItemMenuDoctor(R.drawable.usuario_icon, "Eliminar Consulta"),
-                new ItemMenuDoctor(R.drawable.usuario_icon, "Consulta del Día"),
-                new ItemMenuDoctor(R.drawable.usuario_icon, "Nuevo Paciente")
+                new ItemMenuDoctor(R.drawable.icon_appoinment, "Nueva Consulta"),
+                new ItemMenuDoctor(R.drawable.icon_modify, "Modificar Consulta"),
+                new ItemMenuDoctor(R.drawable.icon_garbage, "Eliminar Consulta"),
+                new ItemMenuDoctor(R.drawable.icon_calendar, "Consulta del Día"),
+                new ItemMenuDoctor(R.drawable.icon_new, "Nuevo Paciente")
         };
 
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
@@ -186,7 +186,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         Toast.makeText(contextActivity,"Nuevo Paciente",Toast.LENGTH_SHORT).show();
                         break;
                 }
-                startActivity(newActivity);
+                if (newActivity != null)
+                    startActivity(newActivity);
             }
         });
 

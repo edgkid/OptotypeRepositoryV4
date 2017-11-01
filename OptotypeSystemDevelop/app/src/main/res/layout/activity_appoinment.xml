@@ -36,7 +36,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/log_out"/>
+                android:background="@drawable/icon_on"/>
 
             <Button
                 android:id="@+id/buttonUpdate"
@@ -44,7 +44,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/update"/>
+                android:background="@drawable/icon_updated"/>
 
         </LinearLayout>
 
