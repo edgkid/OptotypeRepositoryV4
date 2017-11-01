@@ -23,7 +23,8 @@
         <activity android:name=".TestActivity" />
         <activity android:name=".AppoinmentActivity" />
         <activity android:name=".DeleteAppoinmentActivity" />
-        <activity android:name=".ModifyAppoinmentActivity"></activity>
+        <activity android:name=".ModifyAppoinmentActivity" />
+        <activity android:name=".AppoinmentListActivity"></activity>
     </application>
 
 </manifest>
