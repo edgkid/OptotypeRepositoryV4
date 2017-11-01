@@ -33,23 +33,24 @@ public class DeleteAppoinmentActivity extends AppCompatActivity {
 
     public void loadAppoinment (){
 
-        PatientsToday patiensData[] = new PatientsToday[]{
-                new PatientsToday("Edgar Rafel Landaeta Malave","4",R.drawable.usuario_icon),
-                new PatientsToday("Gabriel Andres Landaeta Eljuri","3",R.drawable.usuario_icon),
-                new PatientsToday("Juan Francisco Landaeta Eljuri","5",R.drawable.usuario_icon),
-                new PatientsToday("Adira Yadira Quintero Sanchez","3",R.drawable.usuario_icon),
-                new PatientsToday("Kimberly Carolina Iriearte Perozo","4",R.drawable.usuario_icon),
-                new PatientsToday("Victor Alejandro Landaeta Landaeta","4",R.drawable.usuario_icon),
-                new PatientsToday("Abrahan Rafel Castillo Pernia","3",R.drawable.usuario_icon),
-                new PatientsToday("Jesus Gabriel Moreno Campo","5",R.drawable.usuario_icon),
-                new PatientsToday("Victoria Coromoto Malave Campo","5",R.drawable.usuario_icon),
-                new PatientsToday("Jessica Maria Guzman Palacio","3",R.drawable.usuario_icon),
-                new PatientsToday("Gabriela Maria Gimenes Arroyo","4",R.drawable.usuario_icon),
-                new PatientsToday("Cesar Alejandro Galindo Guerra","4",R.drawable.usuario_icon),
+        // se debe modificar para consumir información del servidor
+        ListActionOnPatient patientsData[] = new ListActionOnPatient[]{
+                new ListActionOnPatient(R.drawable.usuario_icon,"Edgar Rafel Landaeta Malave", R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Gabriel Andres Landaeta Eljuri",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Juan Francisco Landaeta Eljuri",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Adira Yadira Quintero Sanchez",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Kimberly Carolina Iriearte Perozo",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Victor Alejandro Landaeta Landaeta",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Abrahan Rafel Castillo Pernia",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Jesus Gabriel Moreno Campo",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Victoria Coromoto Malave Campo",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Jessica Maria Guzman Palacio",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Gabriela Maria Gimenes Arroyo",R.drawable.icon_garbage),
+                new ListActionOnPatient(R.drawable.usuario_icon,"Cesar Alejandro Galindo Guerra",R.drawable.icon_garbage)
         };
 
-        PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
-        listViewAppoinment.setAdapter(patientsAdapter);
+        ListActionOnPatientAdapter actionsAdapter = new ListActionOnPatientAdapter(this,R.layout.list_action_on_patient_row, patientsData);
+        listViewAppoinment.setAdapter(actionsAdapter);
 
     }
 
