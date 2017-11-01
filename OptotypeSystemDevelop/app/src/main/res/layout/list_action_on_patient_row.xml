@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/photoPatientToday"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_weight="3"
+        android:src="@drawable/usuario_icon" />
+
+    <TextView
+        android:id="@+id/completeNamePatient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="prueba" />
+
+    <ImageView
+        android:id="@+id/crudIconDoctor"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_weight="3"
+        android:src="@drawable/usuario_icon" />
+
+
+</LinearLayout>
