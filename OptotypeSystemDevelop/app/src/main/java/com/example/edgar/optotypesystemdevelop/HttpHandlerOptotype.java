@@ -3,6 +3,7 @@ package com.example.edgar.optotypesystemdevelop;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.IntegerRes;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -135,25 +136,22 @@ public class HttpHandlerOptotype {
 
             array = new JSONArray(result);
 
-            PatientDbHelper PatientDb = new PatientDbHelper(this.context);
-            SQLiteDatabase db = PatientDb.getWritableDatabase();
+            OptotypeDbHelper optotypeDb = new OptotypeDbHelper(this.context);
+            SQLiteDatabase db = optotypeDb.getWritableDatabase();
 
             for(int i=0; i<array.length(); i++){
 
-                Log.d("cuenta: ", ("Insert" + Integer.toString(i)));
-
                 JSONObject jsonObj  = array.getJSONObject(i);
 
-                /*values.put(PatientDbContract.PatientEntry._ID, Integer.parseInt(jsonObj.getString("idPatient")));
-                values.put(PatientDbContract.PatientEntry.ID, jsonObj.getString("idPatient"));
-                values.put(PatientDbContract.PatientEntry.NAME, jsonObj.getString("firstName"));
-                values.put(PatientDbContract.PatientEntry.MIDDLENAME, jsonObj.getString("middleName"));
-                values.put(PatientDbContract.PatientEntry.LASTNAME, jsonObj.getString("lastName"));
-                values.put(PatientDbContract.PatientEntry.MAIDENNAME, jsonObj.getString("maidenName"));
-                values.put(PatientDbContract.PatientEntry.YEARSOLD, jsonObj.getString("yearsOld"));
-                values.put(PatientDbContract.PatientEntry.PHOTO, jsonObj.getString("image"));
+                values.put(OptotypeDbContract.OptotypeEntry._ID, Integer.parseInt(jsonObj.getString("idOptotype")));
+                values.put(OptotypeDbContract.OptotypeEntry.ID, jsonObj.getString("idOptotype"));
+                values.put(OptotypeDbContract.OptotypeEntry.OPTOTYPECODE, jsonObj.getString("optotypeCode"));
+                values.put(OptotypeDbContract.OptotypeEntry.OPTOTYPENAME, jsonObj.getString("optotypeName"));
+                values.put(OptotypeDbContract.OptotypeEntry.IMAGE, jsonObj.getString("image"));
 
-                db.insert(PatientDbContract.PatientEntry.TABLE_NAME, null, values);*/
+                db.insert(OptotypeDbContract.OptotypeEntry.TABLE_NAME, null, values);
+
+                Log.d("cuenta: ", ("Insert " + Integer.toString(i)) + jsonObj.getString("optotypeCode"));
 
             }
 
@@ -163,6 +161,5 @@ public class HttpHandlerOptotype {
         }
 
     }
-
 
 }

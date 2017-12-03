@@ -1,5 +1,6 @@
 package com.example.edgar.optotypesystemdevelop;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -13,6 +14,11 @@ import java.util.Locale;
 public class InteractionElements {
 
     private  ArrayList <Optotype> elements = new ArrayList<Optotype>();
+    private Context context;
+
+    public InteractionElements(Context context) {
+        this.context = context;
+    }
 
     public InteractionElements() {
     }
@@ -43,7 +49,7 @@ public class InteractionElements {
         optotypes.add("bonbillo_1");
         /////////////////////////////////////////////
 
-        for (String element : optotypes){
+         for (String element : optotypes){
             optotype = new Optotype();
             optotype.setIdOptotype(Integer.toString(count));
             optotype.setOptotypeName(element);

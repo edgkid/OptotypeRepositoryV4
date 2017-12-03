@@ -30,7 +30,7 @@ public class RequestPatient {
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
         Log.d("message: ","Entro en metodo para consultar tabla local");
-        Cursor cursor = db.rawQuery("SELECT name FROM patient_db_app", null);
+        Cursor cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
         if (cursor.moveToFirst()){
             Log.d("message: ","existen datos en la tabla local");
@@ -48,7 +48,7 @@ public class RequestPatient {
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT name FROM patient_db_app", null);
+        Cursor cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
         Log.d("message: ", "Entra en metodo para comprar registros de tabla local");
         if (cursor.moveToFirst()) {
@@ -71,7 +71,7 @@ public class RequestPatient {
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo  FROM patient_db_app", null);
+        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -81,7 +81,6 @@ public class RequestPatient {
                 patient.setYearsOld(cursor.getString(4));
                 byte[] byteCode = Base64.decode(cursor.getString(6), Base64.DEFAULT);
                 image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
-                //patient.setPhoto(cursor.getString(6));
                 patient.setPhoto(image);
                 patientsData[value] = patient;
                 value ++;

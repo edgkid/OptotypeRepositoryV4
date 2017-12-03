@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class TestActivity extends AppCompatActivity {
 
     TextView textView;
     Context context;
+    ArrayList<String> optotypes = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,14 @@ public class TestActivity extends AppCompatActivity {
             textView.setText(value);
         }*/
 
-        RequestOptotype requestOptotype = new RequestOptotype("optotypes",this);
+
+        RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
         requestOptotype.findOptotypes();
+        optotypes = requestOptotype.takeOptotypes();
+
+        for (String element : optotypes){
+           Log.d("consumido: ", element);
+        }
 
 
     }

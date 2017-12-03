@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         contextActivity = this;
 
         editTextUserName = (EditText) findViewById(R.id.editTextUserNameLogin);
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener((View.OnClickListener) contextActivity);
 
+        initializeApp();
         verifyPreferencesLogin();
 
     }
@@ -79,6 +81,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (!user.equals("defaultUser") && !password.equals("defaultUser")){
             callNewActivity();
         }
+
+    }
+
+    public void initializeApp (){
+        OptoTypeDbAppInitialize newTables = new OptoTypeDbAppInitialize(contextActivity);
+
+        newTables.findOrCreteTablePatients();
+        newTables.findOrCreateTableOptotypes();
 
     }
 }

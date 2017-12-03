@@ -44,7 +44,7 @@ public class InteractionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_interaction);
 
         controlInteraction = new Interaction();
-        elements = new InteractionElements();
+        elements = new InteractionElements(this);
         elements.fillInteractionElements();
 
 
@@ -64,11 +64,11 @@ public class InteractionActivity extends AppCompatActivity {
         imageOptotypeC = (ImageView) findViewById(R.id.imageOptotypeOptionC);
 
 
-        imageOptotype.setOnLongClickListener(logClickListener);
+        /*imageOptotype.setOnLongClickListener(logClickListener);
 
         imageOptotypeA.setOnDragListener(dragListenerA);
         imageOptotypeB.setOnDragListener(dragListenerB);
-        imageOptotypeC.setOnDragListener(dragListenerC);
+        imageOptotypeC.setOnDragListener(dragListenerC);*/
 
         Intent intentData = getIntent();
         Bundle patientExtras = intentData.getExtras();
@@ -78,12 +78,12 @@ public class InteractionActivity extends AppCompatActivity {
             textLastNames.setText( (String) patientExtras.get("Patient"));
             textYearsOld.setText( (String) patientExtras.get("YearsOld") + " años");
 
-            refreshInteractionActivity();
+            //refreshInteractionActivity();
 
         }
 
     }
-
+/*
     View.OnLongClickListener  logClickListener = new View.OnLongClickListener() {
 
         @RequiresApi(api = Build.VERSION_CODES.N)
@@ -140,7 +140,7 @@ public class InteractionActivity extends AppCompatActivity {
 
             return true;
         }
-    };
+    };*/
 
     public void actionDrag (int dragEvent, View view, int option){
 
