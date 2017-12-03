@@ -38,8 +38,8 @@ public class RequestOptotype {
             Log.d("message: ","existen datos en la tabla local");
         }else{
             Log.d("message: ","NO existen datos en la tabla local");
-            /*HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
-            httpRequestPatient.connectToResource((DashBoardActivity) context);*/
+            HttpHandlerOptotype httpRequestOptotype = new HttpHandlerOptotype(request,context);
+            httpRequestOptotype.connectToResource((TestActivity)context);
         }
     }
 

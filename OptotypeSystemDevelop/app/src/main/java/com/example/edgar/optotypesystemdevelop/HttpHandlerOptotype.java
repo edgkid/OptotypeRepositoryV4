@@ -93,7 +93,7 @@ public class HttpHandlerOptotype {
         return value;
     }
 
-    public void connectToResource (final DashBoardActivity ctx){
+    public void connectToResource (final TestActivity ctx){
 
         Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
@@ -107,7 +107,7 @@ public class HttpHandlerOptotype {
 
                         if (verifyRespondeServer(result)){
                             Toast.makeText(ctx.getApplicationContext(),"Conexion con Optotypes", Toast.LENGTH_SHORT).show();
-                            //procesingJson(result);
+                            procesingJson(result);
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"Conexion No Optotypes", Toast.LENGTH_SHORT).show();
                         interrupt();

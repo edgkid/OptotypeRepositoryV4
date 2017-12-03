@@ -43,7 +43,7 @@ public class TestActivity extends AppCompatActivity {
             textView.setText(value);
         }*/
 
-        RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
+        RequestOptotype requestOptotype = new RequestOptotype("optotypes",this);
         requestOptotype.findOptotypes();
 
 
