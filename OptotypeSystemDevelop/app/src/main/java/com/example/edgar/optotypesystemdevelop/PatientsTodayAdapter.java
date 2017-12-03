@@ -47,7 +47,10 @@ public class PatientsTodayAdapter extends ArrayAdapter<PatientsToday> {
         }
 
         PatientsToday patients = data[position];
-        holder.photo.setImageResource(patients.getPhoto());
+        if (patients.getPhoto() != null)
+            holder.photo.setImageBitmap(patients.getPhoto());
+        else
+            holder.photo.setImageResource(R.drawable.usuario_icon);
         holder.name.setText(patients.getName());
         holder.yearsOld.setText(patients.getYearsOld());
 

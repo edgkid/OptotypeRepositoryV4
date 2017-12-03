@@ -26,7 +26,8 @@ public class OptotypeDbHelper extends SQLiteOpenHelper {
 
         // crear Tablas de base de datos
         sql = sql + "CREATE TABLE" + OptotypeDbContract.OptotypeEntry.TABLE_NAME + " ( ";
-        sql = sql + OptotypeDbContract.OptotypeEntry._ID + " INTEGER PRIARY KEY AUTOINCREMENT, ";
+        //sql = sql + OptotypeDbContract.OptotypeEntry._ID + " INTEGER PRIARY KEY AUTOINCREMENT, ";
+        sql = sql + OptotypeDbContract.OptotypeEntry._ID + " INTEGER PRIARY KEY, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.ID + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPECODE + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPENAME + " TEXT, ";

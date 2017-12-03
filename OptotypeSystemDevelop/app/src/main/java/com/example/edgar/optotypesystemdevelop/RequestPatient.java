@@ -3,7 +3,11 @@ package com.example.edgar.optotypesystemdevelop;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 
 /**
  * Created by Edgar on 07/10/2017.
@@ -25,13 +29,13 @@ public class RequestPatient {
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
-        Log.d(".....","Consultar");
+        Log.d("message: ","Entro en metodo para consultar tabla local");
         Cursor cursor = db.rawQuery("SELECT name FROM patient_db_app", null);
 
         if (cursor.moveToFirst()){
-            Log.d("ss: ","existen datos en la tabla local");
+            Log.d("message: ","existen datos en la tabla local");
         }else{
-            Log.d("nn: ","NO existen datos en la tabla local");
+            Log.d("message: ","NO existen datos en la tabla local");
             HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
             httpRequestPatient.connectToResource((DashBoardActivity) context);
         }
@@ -46,6 +50,7 @@ public class RequestPatient {
 
         Cursor cursor = db.rawQuery("SELECT name FROM patient_db_app", null);
 
+        Log.d("message: ", "Entra en metodo para comprar registros de tabla local");
         if (cursor.moveToFirst()) {
             do {
                 number = cursor.getCount();
@@ -58,13 +63,15 @@ public class RequestPatient {
 
     public PatientsToday [] TakePatientsToday (){
 
+        Log.d("message: ", "Metodo para obtener pacientes ya en local");
         int value = 0;
+        Bitmap image = null;
         PatientsToday patientsData[] = new PatientsToday[CountPatinetsToday ()];
 
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient  FROM patient_db_app", null);
+        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo  FROM patient_db_app", null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -72,6 +79,10 @@ public class RequestPatient {
                 patient.setIdPatient(Integer.parseInt(cursor.getString(5)));
                 patient.setName(cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
                 patient.setYearsOld(cursor.getString(4));
+                byte[] byteCode = Base64.decode(cursor.getString(6), Base64.DEFAULT);
+                image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+                //patient.setPhoto(cursor.getString(6));
+                patient.setPhoto(image);
                 patientsData[value] = patient;
                 value ++;
             } while(cursor.moveToNext());

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button logOut;
+    Button update;
     ImageView imageUser;
    // TextView userName;
 
@@ -33,9 +35,11 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         contextActivity = this;
         logOut = (Button) findViewById(R.id.buttonLogout);
+        update = (Button) findViewById(R.id.buttonUpdate);
         imageUser = (ImageView) findViewById(R.id.imageViewLoginUser);
         //userName = (TextView) findViewById(R.id.textViewLoginUser);
         logOut.setOnClickListener((View.OnClickListener) contextActivity);
+        update.setOnClickListener((View.OnClickListener) contextActivity);
 
         listViewMenu = (ListView) findViewById(R.id.listViewDashBoardMenu);
         loadMenu();
@@ -45,10 +49,53 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
 
+        /*cleanPreferencesLogin();
+
+        Intent loginActivity = new Intent(this, LoginActivity.class);
+        startActivity(loginActivity);*/
+
+        switch (v.getId()){
+            case R.id.buttonLogout:
+                //Toast.makeText(contextActivity,"logOut",Toast.LENGTH_SHORT).show();
+                logOutDashBoard();
+                break;
+            case R.id.buttonUpdate:
+                //Toast.makeText(contextActivity,"Update",Toast.LENGTH_SHORT).show();
+                updateDashBoard();
+                break;
+        }
+    }
+
+    public void logOutDashBoard(){
         cleanPreferencesLogin();
 
         Intent loginActivity = new Intent(this, LoginActivity.class);
         startActivity(loginActivity);
+    }
+
+    public void updateDashBoard(){
+        //loadListPatientsToday();
+        int countValue = 0;
+        RequestPatient reuquestPatient = new RequestPatient("patients", contextActivity);
+        PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
+        Log.d("message: ", Integer.toString(reuquestPatient.CountPatinetsToday()));
+        PatientsToday patients[] = reuquestPatient.TakePatientsToday();
+
+        if (patientsData.length == 0)
+            Log.d("menssage: ","No hay listado que llenar");
+        else
+            Log.d("menssage: ","Hay listado que llenar");
+
+        while (countValue < reuquestPatient.CountPatinetsToday() ){
+            Log.d("menssage: ","llenando lista");
+            patientsData[countValue] = new PatientsToday(patients[countValue].getName(),patients[countValue].getYearsOld(),patients[countValue].getPhoto());
+            countValue ++;
+        }
+
+
+        PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
+        listViewMenu.setAdapter(patientsAdapter);
+
     }
 
     /**
@@ -71,19 +118,16 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         // Comentario para trabajar local desde la oficina
         SharedPreferences preferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
-       /* if (preferences.getString("roll", "defaultroll").equals("Doctor")){
-            ArrayAdapter<String> adapterMenuDoctor = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuDoctor);
-            listViewMenu.setAdapter(adapterMenuDoctor);
+        if (preferences.getString("roll", "defaultroll").equals("Doctor")){
+            loadListMenuDoctor();
         }else if(preferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
-            //ArrayAdapter<String> adapterMenuPatient = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, menuPatients);
-            //listViewMenu.setAdapter(adapterMenuPatient);
             loadListPatientsToday();
-        }*/
+        }
 
         // linea temporal para trabajar en la oficina
 
         //loadListPatientsToday();
-        loadListMenuDoctor();
+        //loadListMenuDoctor();
 
     }
 
@@ -94,29 +138,36 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
           int countValue = 0;
         //Listado de pacientes genericos para trabajar en la oficina
-        PatientsToday patiensData[] = new PatientsToday[]{
+       /*PatientsToday patiensData[] = new PatientsToday[]{
                 new PatientsToday("Edgar Rafel Landaeta Malave","4",R.drawable.usuario_icon),
                 new PatientsToday("Gabriel Andres Landaeta Eljuri","4",R.drawable.usuario_icon),
                 new PatientsToday("Juan Francisco Landaeta Eljuri","4",R.drawable.usuario_icon),
         };
 
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patiensData);
-        listViewMenu.setAdapter(patientsAdapter);
+        listViewMenu.setAdapter(patientsAdapter);*/
         ///////////////////////////////////////////// - Bloque a borar
 
         //Listado de pacieste desde el servicio web
-       /* RequestPatient reuquestPatient = new RequestPatient("patients", this);
+        RequestPatient reuquestPatient = new RequestPatient("patients", this);
         reuquestPatient.findPatientsToDay();
 
         PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
+        Log.d("message: ", Integer.toString(reuquestPatient.CountPatinetsToday()));
         PatientsToday patients[] = reuquestPatient.TakePatientsToday();
+
+        if (reuquestPatient.CountPatinetsToday() == 0)
+            Log.d("menssage: ","No hay listado que llenar");
+
         while (countValue < reuquestPatient.CountPatinetsToday() ){
-            patientsData[countValue] = new PatientsToday(patients[countValue].getName(),patients[countValue].getYearsOld(),R.drawable.usuario_icon);
+            Log.d("menssage: ","llenando lista");
+            patientsData[countValue] = new PatientsToday(patients[countValue].getName(),patients[countValue].getYearsOld(),patients[countValue].getPhoto());
             countValue ++;
         }
 
+
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
-        listViewMenu.setAdapter(patientsAdapter);*/
+        listViewMenu.setAdapter(patientsAdapter);
 
         callInteractionActivityByPatient ();
 

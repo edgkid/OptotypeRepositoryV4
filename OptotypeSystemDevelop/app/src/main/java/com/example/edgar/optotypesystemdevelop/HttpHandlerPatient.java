@@ -80,6 +80,7 @@ public class HttpHandlerPatient {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
+        Log.d("message: ", "Metodo para verificar");
 
         try{
 
@@ -94,6 +95,7 @@ public class HttpHandlerPatient {
 
     public void connectToResource (final DashBoardActivity ctx){
 
+        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -121,8 +123,10 @@ public class HttpHandlerPatient {
     public void procesingJson (String result){
 
         JSONArray array = null;
+        String sql = "";
         ContentValues values = new ContentValues();
 
+        Log.d("message: ", "Metodo para procesar JSON");
         Log.d("JSON: ", result.toString());
 
         try {
@@ -136,18 +140,23 @@ public class HttpHandlerPatient {
 
             for(int i=0; i<array.length(); i++){
 
+                Log.d("cuenta: ", ("Insert" + Integer.toString(i)));
+
                 JSONObject jsonObj  = array.getJSONObject(i);
 
-                values.put(PatientDbContract.PatientEntry.ID, jsonObj.getString("idpatient"));
-                values.put(PatientDbContract.PatientEntry.NAME, jsonObj.getString("firstname"));
-                values.put(PatientDbContract.PatientEntry.MIDDLENAME, jsonObj.getString("middlename"));
-                values.put(PatientDbContract.PatientEntry.LASTNAME, jsonObj.getString("lastname"));
-                values.put(PatientDbContract.PatientEntry.MAIDENNAME, jsonObj.getString("maidenname"));
-                values.put(PatientDbContract.PatientEntry.YEARSOLD, jsonObj.getString("yearsold"));
-                values.put(PatientDbContract.PatientEntry.FKUSER, jsonObj.getString("fkuser"));
-                values.put(PatientDbContract.PatientEntry.PHOTO, Integer.toString(R.drawable.usuario_icon));
+                values.put(PatientDbContract.PatientEntry._ID, Integer.parseInt(jsonObj.getString("idPatient")));
+                values.put(PatientDbContract.PatientEntry.ID, jsonObj.getString("idPatient"));
+                values.put(PatientDbContract.PatientEntry.NAME, jsonObj.getString("firstName"));
+                values.put(PatientDbContract.PatientEntry.MIDDLENAME, jsonObj.getString("middleName"));
+                values.put(PatientDbContract.PatientEntry.LASTNAME, jsonObj.getString("lastName"));
+                values.put(PatientDbContract.PatientEntry.MAIDENNAME, jsonObj.getString("maidenName"));
+                values.put(PatientDbContract.PatientEntry.YEARSOLD, jsonObj.getString("yearsOld"));
+                //values.put(PatientDbContract.PatientEntry.FKUSER, jsonObj.getString("fkUser").toString());
+                //values.put(PatientDbContract.PatientEntry.PHOTO, Integer.toString(R.drawable.usuario_icon));
+                values.put(PatientDbContract.PatientEntry.PHOTO, jsonObj.getString("image"));
 
                 db.insert(PatientDbContract.PatientEntry.TABLE_NAME, null, values);
+
             }
 
         } catch (JSONException e) {
