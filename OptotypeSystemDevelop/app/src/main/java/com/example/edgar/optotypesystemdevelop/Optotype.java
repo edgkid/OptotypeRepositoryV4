@@ -9,16 +9,17 @@ public class Optotype {
     private String idOptotype;
     private String optotypeCode;
     private String optotypeName;
-    private String idOptotypeServer;
+    private String image;
+
 
     public Optotype() {
     }
 
-    public Optotype(String idOptotype, String optotypeCode, String optotypeName, String idOptotypeServer) {
+    public Optotype(String idOptotype, String optotypeCode, String optotypeName, String image) {
         this.idOptotype = idOptotype;
         this.optotypeCode = optotypeCode;
         this.optotypeName = optotypeName;
-        this.idOptotypeServer = idOptotypeServer;
+        this.image = image;
     }
 
     public String getIdOptotype() {
@@ -45,11 +46,11 @@ public class Optotype {
         this.optotypeName = optotypeName;
     }
 
-    public String getIdOptotypeServer() {
-        return idOptotypeServer;
+    public String getImage() {
+        return image;
     }
 
-    public void setIdOptotypeServer(String idOptotypeServer) {
-        this.idOptotypeServer = idOptotypeServer;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

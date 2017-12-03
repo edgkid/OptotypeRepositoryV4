@@ -25,13 +25,13 @@ public class OptotypeDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         // crear Tablas de base de datos
-        sql = sql + "CREATE TABLE" + OptotypeDbContract.OptotypeEntry.TABLE_NAME + " ( ";
+        sql = sql + "CREATE TABLE " + OptotypeDbContract.OptotypeEntry.TABLE_NAME + " ( ";
         //sql = sql + OptotypeDbContract.OptotypeEntry._ID + " INTEGER PRIARY KEY AUTOINCREMENT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry._ID + " INTEGER PRIARY KEY, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.ID + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPECODE + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPENAME + " TEXT, ";
-        sql = sql + OptotypeDbContract.OptotypeEntry.IDOPTOTYPESERVER + " TEXT, ";
+        sql = sql + OptotypeDbContract.OptotypeEntry.IMAGE + " TEXT, ";
         sql = sql + " UNIQUE ( " + OptotypeDbContract.OptotypeEntry.ID + " ) ";
         sql = sql +" ) ";
 
@@ -46,12 +46,12 @@ public class OptotypeDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         // crear Tablas de base de datos
-        sql = sql + "CREATE TABLE" + OptotypeDbContract.OptotypeEntry.TABLE_NAME + " ( ";
+        sql = sql + "CREATE TABLE " + OptotypeDbContract.OptotypeEntry.TABLE_NAME + " ( ";
         sql = sql + OptotypeDbContract.OptotypeEntry._ID + " INTEGER PRIARY KEY AUTOINCREMENT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.ID + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPECODE + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPENAME + " TEXT, ";
-        sql = sql + OptotypeDbContract.OptotypeEntry.IDOPTOTYPESERVER + " TEXT, ";
+        sql = sql + OptotypeDbContract.OptotypeEntry.IMAGE + " TEXT, ";
         sql = sql + " UNIQUE ( " + OptotypeDbContract.OptotypeEntry.ID + " ) ";
         sql = sql +" ) ";
 

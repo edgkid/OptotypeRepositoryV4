@@ -46,7 +46,6 @@ public class InteractionElements {
         for (String element : optotypes){
             optotype = new Optotype();
             optotype.setIdOptotype(Integer.toString(count));
-            optotype.setIdOptotypeServer(Integer.toString(count));
             optotype.setOptotypeName(element);
             optotype.setOptotypeCode(element);
             count++;
